@@ -1,4 +1,4 @@
-import axios from 'axios'
+//const axios = require('axios')
 const form = document.querySelector("#form");
 const item = document.querySelector("#item");
 const uname = document.querySelector("#name");
@@ -75,7 +75,7 @@ async function onClick(event) {
         const dId = e.target.id
         try{
             await axios
-                .get(`http://localhost:3000/user/appointments/delete/$(dId)`);
+                .get(`http://localhost:4000/user/appointments/delete/$(dId)`);
                 refresh()
         }
         catch(err){
@@ -88,12 +88,12 @@ async function onClick(event) {
         e.preventDefault();
         const eId = e.target.id
         try{
-            const response = await axios.get( `http://localhost:3000/user/appointments/edit/${eId}`);
+            const response = await axios.get( `http://localhost:4000/user/appointments/edit/${eId}`);
             const {uname,uemail,uphone} = response.data;
             uname.value = uname;
             uemail.value = uemail;
             uphone.value = uphone;
-            await axios.get( `http://localhost:3000/user/appointments/delete/${eId}`)
+            await axios.get( `http://localhost:4000/user/appointments/delete/${eId}`)
             refresh();
         }catch(err){
             console.log(err)
@@ -103,7 +103,7 @@ async function onClick(event) {
 
 async function refresh(){
     try{
-        const response = await axios.get( `http://192.168.29.221:3000/user/appointments/data`);
+        const response = await axios.get( `http://localhost:4000/user/appointments`);
         showOutputResponse(response)
     }
     catch(err){

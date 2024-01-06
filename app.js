@@ -12,7 +12,7 @@ app.use('/user',userRoutes);
 async function initiate(){
     try{
         await sequelize.sync();
-        app.listen(3000)
+        app.listen(4000)
     }catch(err){
         console.log(err)
     }

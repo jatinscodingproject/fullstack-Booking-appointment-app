@@ -1,5 +1,6 @@
 const userDetails = require('../controllers/user');
 
+
 exports.getUserfromPage =  async(request,response,next) =>  {
     try{
         response.sendFile('index.html',{
@@ -13,7 +14,7 @@ exports.getUserfromPage =  async(request,response,next) =>  {
 exports.addUserDetails = async(request,response,next) => {
     try{
         const{uname,uemail,uphone} = request.body;
-        await userDetails.create({
+        await user.create({
             uname:uname,
             uemail:uemail,
             uphone: uphone
