@@ -1,28 +1,17 @@
-const  Sequelize = require('sequelize');
+const db = require('../util/database');
 
-const sequelize = require('../util/database');
+module.exports = class User {
+    constructor(name, email, phoneno) {
+        this.name = name;
+        this.email = email;
+        this.phoneno = phoneno;
+    }
 
-const user = sequelize.define('user',{
-    id:{
-        type:Sequelize.INTEGER,
-        autoIncrement:true,
-        allowNull:true,
-        primaryKey:true
-    },
-    uname:{
-        type:Sequelize.STRING,
-        allowNull:false,
-    },
-    uemail:{
-        type:Sequelize.STRING,
-        allowNull:false
-    },
-    uphone:{
-        type:Sequelize.STRING,
-        allowNull:false
+    save() {
+        return db.execute('INSERT INTO appointments (name, email, phoneno) VALUES (?, ?, ?)', [this.name, this.email, this.phoneno]);
+    }
 
-    },
-
-})
-
-module.exports = user;
+    static findAll(){
+        return db.execute('select * from appointments')
+    }
+};

@@ -1,40 +1,52 @@
 * {
-    padding: 0px;
+    padding:0px;
     margin: 0px;
-    font-family: 'Times New Roman', Times, serif;
-    color: black;
+    font-family: 'Courier New', Courier, monospace;
 }
-html,body{
-    height: 100%;
+
+body{
+    background-color: rgba(11, 14, 11, 0);
+}
+
+.booking_field {
     width: 100%;
-    background-color: #fff;
-    /* background-image: url('https://img.freepik.com/free-vector/vibrant-fluid-gradient-background-with-curvy-shapes_1017-32108.jpg'); */
 }
-#main {
-    background-color: rgb(225, 246, 243);
-}
-h1{
-    text-transform: uppercase;
-    color: rgb(145, 145, 181);
-}
-button {
-    background-color: rgb(62, 223, 110);
-    border: 0px;
-    padding: 10px;
-    border-radius: 50px;   
-}
-#lower {
-    background-color: rgb(178, 244, 196);
-}
-input{
-    color: rgb(240, 76, 21);
-    border: 0px;
+.booking_field h1{
+    color: rgb(163, 163, 248);
     text-align: center;
-    padding: 5px;
-    background-color: rgb(225, 217, 207);
 }
-label{
-    font-size: 15px;
-    font-weight: bold;
-    color: rgb(221, 43, 43);
+.form{
+    height: 100px;
+    width: 500px;
+    padding-left: 620px;
+    margin-top: 30px;
+}
+.form label{
+    color: rgb(163, 163, 246);
+    font-size: 25px;
+    font-weight: bolder;
+}
+.form input{
+    padding: 7px;
+    border: 0px;
+    background-color: aqua;
+    margin-left: 20px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bolder;
+}
+.booking_btn{
+    border: 0px;
+    background-color: blue;
+    padding: 10px;
+    color: white;
+    margin-left: 40px;
+    border-radius: 5px;
+}
+.appointments {
+    list-style: None;
+    align-items: center;
+}
+.appointment_field{
+    margin-top: 130px;
 }

@@ -1,20 +1,15 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
+const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user');
-const sequelize = require('./util/database');
+const db = require('./util/database');
 
-app.use(cors());
-app.use(express.urlencoded({extended:false}));
-app.use(express.static('public'))
-app.use('/user',userRoutes);
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(express.static('public'));
 
-async function initiate(){
-    try{
-        await sequelize.sync();
-        app.listen(4000)
-    }catch(err){
-        console.log(err)
-    }
-}
-initiate();
+app.use(userRoutes);
+
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
