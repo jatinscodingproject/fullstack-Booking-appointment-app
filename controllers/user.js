@@ -10,14 +10,19 @@ exports.addUserDetails = (req,res,next) => {
     const name = req.body.name
     const email = req.body.emailid
     const phoneno = req.body.phoneno
-    const user = new User(name,email,phoneno)
-    user.save()
-        .then(() => {
-            res.redirect('/')
-        })
-        .catch(err => {
-            console.log(err)
-        })
+    User.create({
+        name:name,
+        emailid:email,
+        phoneno:phoneno
+    })
+    .then((result) => {
+        console.log(result)
+        console.log('data Created successfull')
+        res.redirect('/appointments/data')
+    })
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 exports.getallUserDetails = async(req,res,next) =>  {
