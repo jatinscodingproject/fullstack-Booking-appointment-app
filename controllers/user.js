@@ -1,35 +1,61 @@
 const User = require('../model/user')
 
-exports.getUserfromPage = (req,res,next) => {
-    res.status(200).sendFile('index.html',{
-        root:'views'
-    })
-}
+// exports.getUserfromPage = (req,res,next) => {
+//     res.status(200).sendFile('index.html',{
+//         root:'views'
+//     })
+//     console.log(req.body)
+// }
 
-exports.addUserDetails = (req,res,next) => {
+exports.postUserDetails = (req,res,next) => {
+    console.log(req.body)
     const name = req.body.name
-    const email = req.body.emailid
-    const phoneno = req.body.phoneno
+    const emailid =req.body.emailid
+    const phoneno=req.body.phoneno
     User.create({
         name:name,
-        emailid:email,
+        emailid:emailid,
         phoneno:phoneno
-    })
-    .then((result) => {
-        console.log(result)
-        console.log('data Created successfull')
-        res.redirect('/appointments/data')
-    })
-    .catch(err => {
+    }).then((result) =>{
+        console.log('Data added successfully')
+        res.json(result)
+    }).catch((err) => {
         console.log(err)
     })
 }
 
-exports.getallUserDetails = async(req,res,next) =>  {
-    try{
-        const data = await User.findAll()
-        res.send(data)
-    }catch(err){
-        console.log(err)
-    }
+exports.getUserDetails = (req,res,next) => {
+    User.findAll()
+    .then((details) => {
+        console.log('Data extracted successfully')
+        res.json(details)
+    })
+    .catch(err => console.log(err))
+}
+
+exports.deleteUserDetails = (req,res,next) => {
+    const dId = req.params.dId
+    console.log(dId)
+    User
+        .destroy({where:{
+            id:dId
+        }})
+        .then(res => {
+            console.log('Data deleted succesfully')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+exports.editUserDetails = (req,res,next) => {
+    const eId = req.params.eId
+    User
+        .findByPk(eId)
+        .then(result => {
+            res.json(result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 }

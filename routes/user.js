@@ -4,9 +4,14 @@ const router = express.Router()
 
 const userController = require('../controllers/user')
 
-router.get('/appointments',userController.getUserfromPage)
-router.post('/appointments',userController.addUserDetails)
-router.get('/appointments/data',userController.getallUserDetails)
+//router.get('/appointments',userController.getUserfromPage);
 
+router.get('/appointments/data',userController.getUserDetails);
+
+router.post('/appointments',userController.postUserDetails);
+
+router.get('/appointments/delete/:dId',userController.deleteUserDetails);
+
+router.get('/appointments/edit/:eId',userController.editUserDetails);
 
 module.exports = router;
